@@ -1,0 +1,165 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Food Delivery</title>
+    
+    <!-- Leaflet.js & Search Plugin CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f8f8; margin: 0; padding: 0; }
+        .header { background-color: #ff4757; color: white; text-align: center; padding: 15px; font-size: 22px; font-weight: bold; }
+        .container { width: 80%; margin: auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .submit-btn { background: #ff4757; color: white; border: none; padding: 10px; width: 100%; cursor: pointer; font-size: 16px; border-radius: 5px; }
+        #map { height: 300px; width: 100%; margin-top: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">🛒 Checkout</div>
+
+    <div class="container">
+        <h3>Your Order</h3>
+        <ul id="order-summary"></ul>
+        <p><strong>Total: $<span id="total-price">0</span></strong></p>
+
+        <h3>📞 Contact Information<br>97616140**</h3>
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="73749dc6-f5a4-402b-ba0e-e099741d9206">
+            
+            <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Enter 10-digit phone number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="extra">Extra Order (Optional)</label>
+                <textarea id="extra" name="extra"></textarea>
+            </div>
+
+            <!-- Location Search and Selection -->
+            <div class="form-group">
+                <label for="location">Choose your Location on Map *</label>
+                <input type="text" id="location" name="location" required placeholder="Detecting location...">
+                <div id="map"></div>
+            </div>
+
+            <!-- Hidden fields for email -->
+            <input type="hidden" name="order_details" id="order-details">
+            <input type="hidden" name="location_link" id="location-link">
+            
+            <button type="submit" class="submit-btn">Place Order</button>
+        </form>
+    </div>
+
+    <!-- Leaflet.js & Search Plugin JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script>
+        let defaultLat = 27.7172, defaultLng = 85.3240; // Default: Kathmandu, Nepal
+        let map = L.map('map').setView([defaultLat, defaultLng], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        let marker = L.marker([defaultLat, defaultLng], { draggable: true }).addTo(map);
+
+        function updateLocation(lat, lng) {
+            let googleMapsLink = `https://www.google.com/maps?q=${lat},${lng}`;
+            document.getElementById("location").value = `Lat: ${lat}, Lng: ${lng}`;
+            document.getElementById("location-link").value = googleMapsLink;
+        }
+
+        // Add search functionality inside location input
+        let geocoder = L.Control.geocoder({
+            defaultMarkGeocode: false
+        }).on('markgeocode', function(e) {
+            let latlng = e.geocode.center;
+            map.setView(latlng, 16);
+            marker.setLatLng(latlng);
+            updateLocation(latlng.lat, latlng.lng);
+        }).addTo(map);
+
+        // Automatically get user's location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                let lat = position.coords.latitude;
+                let lng = position.coords.longitude;
+
+                map.setView([lat, lng], 16);
+                marker.setLatLng([lat, lng]);
+
+                updateLocation(lat, lng);
+            }, function (error) {
+                console.log("Geolocation error: " + error.message);
+                alert("Could not detect your location. Please search manually.");
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+
+        // Update location when marker is moved
+        marker.on('dragend', function () {
+            let lat = marker.getLatLng().lat;
+            let lng = marker.getLatLng().lng;
+            updateLocation(lat, lng);
+        });
+
+        // Search in the location input field
+        document.getElementById("location").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                let searchQuery = document.getElementById("location").value;
+
+                if (searchQuery) {
+                    geocoder.options.geocoder.geocode(searchQuery, function(results) {
+                        if (results.length > 0) {
+                            let latlng = results[0].center;
+                            map.setView(latlng, 16);
+                            marker.setLatLng(latlng);
+                            updateLocation(latlng.lat, latlng.lng);
+                        } else {
+                            alert("Location not found. Try again.");
+                        }
+                    });
+                }
+            }
+        });
+
+        // Load Cart from Storage
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let orderList = document.getElementById("order-summary");
+        let totalPrice = document.getElementById("total-price");
+        let orderDetails = document.getElementById("order-details");
+
+        let total = 0;
+        let orderText = "Order Details: ";
+        cart.forEach(food => {
+            total += food.price;
+            orderList.innerHTML += `<li>${food.item} - $${food.price}</li>`;
+            orderText += `${food.item} ($${food.price}), `;
+        });
+
+        totalPrice.innerText = total;
+        orderDetails.value = orderText + ` Total: $${total}`;
+
+        // Clear Cart After Checkout
+        document.querySelector("form").addEventListener("submit", function() {
+            localStorage.removeItem("cart");
+        });
+    </script>
+
+</body>
+</html>

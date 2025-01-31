@@ -1,0 +1,128 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #f9f9f9; text-align: center; padding-bottom: 60px; }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 30px 30px;
+            text-align: left;
+            position: relative;
+        }
+        .header h2 { font-size: 22px; margin-bottom: 5px; }
+        .weather { position: absolute; top: 20px; right: 20px; font-size: 14px; }
+        .clock { font-size: 16px; margin-top: 5px; }
+
+        /* Favorites Grid */
+        .container { padding: 20px; }
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .fav-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .fav-item img { width: 40px; height: 40px; margin-bottom: 10px; }
+
+        /* Bottom Navigation */
+        .bottom-nav { 
+            position: fixed; bottom: 0; width: 100%; background: white;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            display: flex; justify-content: space-around; padding: 10px 0;
+        }
+        .bottom-nav div { flex: 1; text-align: center; padding: 10px; cursor: pointer; color: #555; }
+        .bottom-nav div.active { color: #ff416c; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h2 id="greeting">Good Morning, User</h2>
+        <div class="weather">☀️ 21°C</div>
+        <div class="clock" id="clock">--:-- --</div>
+    </div>
+<h1>special link</h1>
+    <!-- Favorites Grid -->
+    <div class="container">
+        <div class="favorites-grid">
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048310.png" alt="Walking"> Walking</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048317.png" alt="Cycling"> Cycling</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048310.png" alt="Driving"> Driving</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048327.png" alt="Train"> Train</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Hiking"> Hiking</div>
+          <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Hiking"> Hiking</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048313.png" alt="Flight"> Flight</div>
+    <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Hiking"> Hiking</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048313.png" alt="Flight"> Flight</div>
+    <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Hiking"> Hiking</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048313.png" alt="Flight"> Flight</div>
+          <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048310.png" alt="Walking"> Walking</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048317.png" alt="Cycling"> Cycling</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048310.png" alt="Driving"> Driving</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048327.png" alt="Train"> Train</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Hiking"> Hiking</div>
+          <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Hiking"> Hiking</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048313.png" alt="Flight"> Flight</div>
+    <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Hiking"> Hiking</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048313.png" alt="Flight"> Flight</div>
+    <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Hiking"> Hiking</div>
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048313.png" alt="Flight"> Flight</div>
+    
+            <div class="fav-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048313.png" alt="Flight"> Flight</div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="window.location.href='index.html'">🏠 Home</div>
+        <div class="nav-item active">⭐ Favorites</div>
+        <div class="nav-item" onclick="window.location.href='more.html'">⚙️ More</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12; // Convert to 12-hour format
+
+            const formattedTime = `${hours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+            document.getElementById("clock").textContent = formattedTime;
+
+            // Update greeting based on time
+            let greeting = "Good Morning";
+            if (now.getHours() >= 12 && now.getHours() < 18) {
+                greeting = "Good Afternoon";
+            } else if (now.getHours() >= 18) {
+                greeting = "Good Evening";
+            }
+            document.getElementById("greeting").textContent = `${greeting}, User`;
+        }
+
+        setInterval(updateClock, 1000); // Update every second
+        updateClock(); // Initial call to set time immediately
+    </script>
+
+</body>
+</html>

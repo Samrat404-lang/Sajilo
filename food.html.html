@@ -1,0 +1,240 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सजिलो Sewa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #ff4757;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .profile-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 80px auto 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .food-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            white-space: nowrap;
+            padding: 10px;
+        }
+
+        .food-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: center;
+        }
+
+        .food-item h4 {
+            margin: 10px 0 5px;
+        }
+
+        .food-item p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .add-to-cart {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .cart-summary {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-items {
+            text-align: left;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .remove-from-cart {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #ff4757;
+            margin-left: 5px;
+        }
+
+        .checkout-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        सजिलो Sewa
+        <button class="profile-btn" onclick="window.location.href='profile.html'">👤</button>
+    </div>
+
+    <div class="container">
+        <input type="text" id="searchBox" class="search-box" placeholder="🔍 Search food or price..." onkeyup="searchFood()">
+        
+        <h3 class="section-title">🥤 पिउने Beverages</h3>
+        <div class="food-container" id=" beverages">
+            <div class="food-item" data-name="Fanta" data-price="100"><h4>Fanta</h4><p>100 Rs</p><button class="add-to-cart" onclick="addToCart('Fanta', 100)">Add to Cart</button></div>
+            <div class="food-item" data-name="Sprite" data-price="100"><h4>Sprite</h4><p>100 Rs</p><button class="add-to-cart" onclick="addToCart('Sprite', 100)">Add to Cart</button></div>
+            <div class="food-item" data-name="Dew" data-price="100"><h4>Dew</h4><p>100 Rs</p><button class="add-to-cart" onclick="addToCart('Dew', 100)">Add to Cart</button></div>
+            <div class="food-item" data-name="Dragon Beer" data-price="300"><h4>Dragon Beer</h4><p>300 Rs</p><button class="add-to-cart" onclick="addToCart('Dragon Beer', 300)">Add to Cart</button></div>
+                       <div class="food-item" data-name="Coke" data-price="100"><h4>coke</h4><p>100 Rs</p><button class="add-to-cart" onclick="addToCart('coke', 100)">Add to Cart</button></div>
+            <div class="food-item" data-name="frooti" data-price="30"><h4>frooti</h4><p>30 Rs</p><button class="add-to-cart" onclick="addToCart('frooti', 30)">Add to Cart</button></div>
+            <div class="food-item" data-name="peepsi" data-price="100"><h4>peepsi</h4><p>100 Rs</p><button class="add-to-cart" onclick="addToCart('peepsi', 100)">Add to Cart</button></div>
+            <div class="food-item" data-name="Commando" data-price="300"><h4>Commando</h4><p>300 Rs</p><button class="add-to-cart" onclick="addToCart('commando', 300)">Add to Cart</button></div>
+            <div class="food-item" data-name="गोरखा Beer" data-price="350"><h4>गोरखा Beer</h4><p>350 Rs</p><button class="add-to-cart" onclick="addToCart('गोरखा Beer', 350)">Add to Cart</button></div>
+                   <div class="food-item" data-name="Fanta" data-price="200"><h4>Big Fanta</h4><p>200 Rs</p><button class="add-to-cart" onclick="addToCart('Fanta', 200)">Add to Cart</button></div>
+            <div class="food-item" data-name="Sprite" data-price="200"><h4>Big Sprite</h4><p>200 Rs</p><button class="add-to-cart" onclick="addToCart('Sprite', 200)">Add to Cart</button></div>
+            <div class="food-item" data-name="Dew" data-price="200"><h4>Big Dew</h4><p>200 Rs</p><button class="add-to-cart" onclick="addToCart('Dew', 200)">Add to Cart</button></div>
+              </div>
+
+
+
+
+        <h3 class="section-title">🍲 खाना Food</h3>
+        <div class="food-container" id="foodItems">
+            <div class="food-item" data-name="Momo" data-price="150"><h4>Momo</h4><p>150 Rs</p><button class="add-to-cart" onclick="addToCart('Momo', 150)">Add to Cart</button></div>
+            <div class="food-item" data-name="Dal Vat Tarkari" data-price="200"><h4>Dal Vat Tarkari</h4><p>200 Rs</p><button class="add-to-cart" onclick="addToCart('Dal Vat Tarkari', 200)">Add to Cart</button></div>
+                        <div class="food-item" data-name="Momo" data-price="150"><h4>Momo</h4><p>150 Rs</p><button class="add-to-cart" onclick="addToCart('Momo', 150)">Add to Cart</button></div>
+            <div class="food-item" data-name="Chowmine" data-price="100"><h4>Chowmine</h4><p>100 Rs</p><button class="add-to-cart" onclick="addToCart('Chowmine', 100)">Add to Cart</button></div>
+            <div class="food-item" data-name="Sekuwa" data-price="250"><h4>Sekuwa</h4><p>250 Rs</p><button class="add-to-cart" onclick="addToCart('Sekuwa', 250)">Add to Cart</button></div>
+                         <div class="food-item" data-name="Momo" data-price="150"><h4>Momo</h4><p>150 Rs</p><button class="add-to-cart" onclick="addToCart('Momo', 150)">Add to Cart</button></div>
+            <div class="food-item" data-name="Dal Vat Tarkari" data-price="200"><h4>Dal Vat Tarkari</h4><p>200 Rs</p><button class="add-to-cart" onclick="addToCart('Dal Vat Tarkari', 200)">Add to Cart</button></div>
+            <div class="food-item" data-name="Sekuwa" data-price="250"><h4>Sekuwa</h4><p>250 Rs</p><button class="add-to-cart" onclick="addToCart('Sekuwa', 250)">Add to Cart</button></div>
+                         <div class="food-item" data-name="Momo" data-price="150"><h4>Momo</h4><p>150 Rs</p><button class="add-to-cart" onclick="addToCart('Momo', 150)">Add to Cart</button></div>
+            <div class="food-item" data-name="Dal Vat Tarkari" data-price="200"><h4>Dal Vat Tarkari</h4><p>200 Rs</p><button class="add-to-cart" onclick="addToCart('Dal Vat Tarkari', 200)">Add to Cart</button></div>
+            <div class="food-item" data-name="Sekuwa" data-price="250"><h4>Sekuwa</h4><p>250 Rs</p><button class="add-to-cart" onclick="addToCart('Sekuwa', 250)">Add to Cart</button></div>
+      
+            <div class="food-item" data-name="Sekuwa" data-price="250"><h4>Sekuwa</h4><p>250 Rs</p><button class="add-to-cart" onclick="addToCart('Sekuwa', 250)">Add to Cart</button></div>
+        </div>
+        
+        
+
+        <div class="cart-summary">
+            <h4>🛒 Your Cart</h4>
+            <div class="cart-items" id="cartItems">No items added</div>
+            <p>Total: <span id="cartTotal">0</span> Rs</p>
+            <button class="checkout-button" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartItems = document.getElementById("cartItems");
+            let total = 0;
+            cartItems.innerHTML = "";
+
+            cart.forEach((item, index) => {
+                cartItems.innerHTML += `${item.name} - ${item.price} Rs <button class="remove-from-cart" onclick="removeFromCart(${index})">❌</button><br>`;
+                total += item.price;
+            });
+
+            document.getElementById("cartTotal").innerText = total || "0";
+        }
+
+        function checkout() {
+            window.location.href = "checkout.html";
+        }
+
+        function searchFood() {
+            let searchText = document.getElementById("searchBox").value.toLowerCase();
+            let foodItems = document.querySelectorAll(".food-item");
+            
+            foodItems.forEach(item => {
+                let name = item.getAttribute("data-name").toLowerCase();
+                let price = item.getAttribute("data-price").toString();
+                
+                if (name.includes(searchText) || price.includes(searchText)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

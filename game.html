@@ -1,0 +1,89 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Box Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #6a0dad;
+        }
+        .game-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background: white;
+            border: 2px solid #6a0dad;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .box {
+            width: 50px;
+            height: 50px;
+            background: red;
+            position: absolute;
+            cursor: pointer;
+        }
+        #score {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Catch the Box!</h1>
+    <p>Click the red box as many times as you can in 30 seconds.</p>
+    <div class="game-container">
+        <div class="box" id="box"></div>
+    </div>
+    <p id="score">Score: 0</p>
+    <p id="timer">Time Left: 30s</p>
+
+    <script>
+        let score = 0;
+        let timeLeft = 30;
+        let box = document.getElementById("box");
+        let scoreDisplay = document.getElementById("score");
+        let timerDisplay = document.getElementById("timer");
+
+        function moveBox() {
+            let gameContainer = document.querySelector(".game-container");
+            let maxX = gameContainer.clientWidth - box.clientWidth;
+            let maxY = gameContainer.clientHeight - box.clientHeight;
+
+            let randomX = Math.floor(Math.random() * maxX);
+            let randomY = Math.floor(Math.random() * maxY);
+
+            box.style.left = randomX + "px";
+            box.style.top = randomY + "px";
+        }
+
+        box.addEventListener("click", function() {
+            score++;
+            scoreDisplay.textContent = "Score: " + score;
+            moveBox();
+        });
+
+        let timer = setInterval(function() {
+            timeLeft--;
+            timerDisplay.textContent = "Time Left: " + timeLeft + "s";
+
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                box.style.display = "none";
+                alert("Time's up! Your final score is: " + score);
+            }
+        }, 1000);
+
+        moveBox();
+    </script>
+
+</body>
+</html>

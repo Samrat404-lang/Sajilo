@@ -1,0 +1,165 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #f4f4f4; padding-bottom: 60px; }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .menu-title { font-size: 20px; font-weight: bold; }
+
+        /* More Options */
+        .menu-container { padding: 15px; }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .menu-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .menu-item img { width: 30px; height: 30px; margin-bottom: 5px; }
+
+        /* Sections */
+        .section {
+            background: white;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .section-title { font-size: 16px; font-weight: bold; display: flex; align-items: center; cursor: pointer; }
+        .section-title img { width: 20px; height: 20px; margin-right: 10px; }
+        .sub-menu { display: none; margin-top: 10px; }
+        .sub-menu a {
+            display: block;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            margin-top: 5px;
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav { 
+            position: fixed; bottom: 0; width: 100%; background: white;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            display: flex; justify-content: space-around; padding: 10px 0;
+        }
+        .bottom-nav div { flex: 1; text-align: center; padding: 10px; cursor: pointer; color: #555; }
+        .bottom-nav div.active { color: #1877f2; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="menu-title">Menu</div>
+        <div class="settings-icon" onclick="window.location.href="">⚙️</div>
+    </div>
+
+    <!-- Main Menu -->
+    <div class="menu-container">
+        <div class="menu-grid">
+            <div class="menu-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048310.png" alt="Memories"> Memories</div>
+            <div class="menu-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048317.png" alt="Saved"> Saved</div>
+            <div class="menu-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048311.png" alt="Groups"> Groups</div>
+            <div class="menu-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048327.png" alt="Video"> Video</div>
+            <div class="menu-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048321.png" alt="Marketplace"> Marketplace</div>
+            <div class="menu-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048313.png" alt="Find Friends"> Find Friends</div>
+            <div class="menu-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048312.png" alt="Feeds"> Feeds</div>
+            <div class="menu-item" onclick="window.location.href=""><img src="https://cdn-icons-png.flaticon.com/512/1048/1048322.png" alt="Events"> Events</div>
+        </div>
+    </div>
+
+    <!-- "See More" Button -->
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('seeMoreSection')">
+            <img src="https://cdn-icons-png.flaticon.com/512/32/32213.png" alt="See More"> See More
+         </div>
+        <div class="sub-menu" id="seeMoreSection">
+            <a href="profile.html">Account & profile</a>
+            <a href="login.html">Password and secutity</a>
+            
+        </div>
+    </div>
+       
+        
+
+    <!-- Help & Support -->
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('helpSupportSection')">
+            <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Help & Support"> Help & Support
+        </div>
+        <div class="sub-menu" id="helpSupportSection">
+            <a href="#">Help Center</a>
+            <a href="#">Report a Problem</a>
+        </div>
+    </div>
+
+    <!-- Settings & Privacy -->
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('settingsPrivacySection')">
+            <img src="https://cdn-icons-png.flaticon.com/512/126/126472.png" alt="Settings & Privacy"> Settings & Privacy
+        </div>
+        <div class="sub-menu" id="settingsPrivacySection">
+            <a href="#">Settings</a>
+            <a href="#">Privacy Checkup</a>
+        </div>
+    </div>
+
+    <!-- Also from Meta -->
+    <div class="section">
+        <div class="section-title" onclick="toggleSection('metaSection')">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732228.png" alt="Meta"> Also from Meta
+        </div>
+        <div class="sub-menu" id="metaSection">
+            <a href="#">Instagram</a>
+            <a href="https://www.tiktok.com/@samratx17?_t=ZS-8tWRxYch1XA&_r=1">Tiktok</a>
+                 <a href="https://www.facebook.com/share/1Y6gDz5aZv/">Facebook</a>
+            <a href="https://www.facebook.com/share/1NGgxVL7Kt/">Facebook</a>
+            <a href="https://youtube.com/@vxxtha?feature=shared">Youtube</a>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="window.location.href='index.html'">🏠 Home</div>
+        <div class="nav-item" onclick="window.location.href='favorite.html'">⭐ Favorites</div>
+        <div class="nav-item active">☰ More</div>
+    </div>
+
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.style.display = section.style.display === "block" ? "none" : "block";
+        }
+    </script>
+
+</body>
+</html>

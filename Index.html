@@ -1,0 +1,170 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel & Video Shorts</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #f5f5f5; text-align: center; padding-bottom: 60px; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+        .header { background: linear-gradient(45deg, #ff416c, #ff4b2b); color: white; padding: 20px; border-radius: 10px; }
+        .header h2 { margin-bottom: 5px; }
+        .time { font-size: 16px; margin-top: 5px; }
+        .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); cursor: pointer; transition: 0.3s; }
+        .card:hover { background: #ddd; }
+        
+        /* Video Section */
+        .videos-title { font-size: 18px; font-weight: bold; margin-top: 30px; }
+        .videos-wrapper { display: flex; overflow-x: auto; gap: 10px; padding: 10px 0; }
+        .video-card { width: 150px; height: 250px; border-radius: 10px; position: relative; flex-shrink: 0; cursor: pointer; }
+        .video-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+        .video-card p { position: absolute; bottom: 10px; left: 10px; color: white; font-size: 14px; font-weight: bold; }
+
+        /* Video Modal */
+        .video-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; z-index: 1000; }
+        .video-container { width: 90%; max-width: 400px; background: black; border-radius: 10px; position: relative; }
+        .video-container video { width: 100%; height: auto; }
+        .close-btn { position: absolute; top: 10px; left: 10px; background: red; color: white; border: none; font-size: 16px; padding: 5px 10px; cursor: pointer; border-radius: 5px; }
+
+        /* Bottom Navigation */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); display: flex; justify-content: space-around; padding: 10px 0; }
+        .bottom-nav div { flex: 1; text-align: center; padding: 10px; cursor: pointer; color: #555; text-decoration: none; }
+        .bottom-nav div.active { color: #ff416c; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2 id="greeting">Good Day, User</h2>
+            <p class="time" id="time-date">⏳ Loading...</p>
+        </div>
+
+        <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Container for the app */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Button styling */
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Inherit text color */
+        }
+
+        .list-item:hover {
+            background-color: #e0e0e0;
+        }
+
+        .list-item i {
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        .list-item span {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Add a subtle shadow on hover */
+        .list-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- All buttons go to the same page (home.html) -->
+        <a href="home.html" class="list-item">
+            <i>🔄</i>
+            <span>Update available</span>
+        </a>
+        <a href="home.html" class="list-item">
+            <i>⭐</i>
+            <span>Frequently used</span>
+        </a>
+        <a href="home.html" class="list-item">
+            <i>📥</i>
+            <span>Installations</span>
+        </a>
+        <a href="home.html" class="list-item">
+            <i>🗑️</i>
+            <span>Cleanup Uninstallations</span>
+        </a>
+        <a href="bus.html" class="list-item">
+            <i>💰</i>
+            <span>Online booking</span>
+        </a>
+        <a href="food.html" class="list-item">
+            <i>🛒</i>
+            <span>online shopping</span>
+        </a>
+        <a href="list.html" class="list-item">
+            <i>📋</i>
+            <span>list to do</span>
+        </a>
+        <a href="home.html" class="list-item">
+            <i>⚙️</i>
+            <span>Settings</span>
+        </a>
+        <a href="home.html" class="list-item">
+            <i>❓</i>
+            <span>Help & customer service</span>
+        </a>
+    </div>
+</body>
+
+        
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="window.location.href='index.html'">🏠 Home</div>
+        <div class="nav-item" onclick="window.location.href='favorite.html'">⭐ Favorites</div>
+        <div class="nav-item" onclick="window.location.href='more.html'">⚙️ More</div>
+    </div>
+
+    <script>
+        // Update Time and Greeting
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("time-date").innerText = `🕒 ${hours}:${minutes} ${ampm}`;
+            document.getElementById("greeting").innerText = hours < 12 ? "Good Morning ☀️" : hours < 18 ? "Good Afternoon 🌤" : "Good Evening 🌙";
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        
+        
+    </script>
+
+</body>
+</html>

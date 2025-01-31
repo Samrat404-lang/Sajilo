@@ -1,0 +1,233 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+        .app-container {
+            width: 360px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+        .dark-mode .app-container {
+            background: #1e1e1e;
+        }
+        .header {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-size: 18px;
+            position: relative;
+        }
+        .time-display {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .weather {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 16px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 20px;
+        }
+        .grid-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dark-mode .grid-item {
+            background: #2a2a2a;
+        }
+        .grid-item img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        .tab-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 360px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: background 0.3s;
+        }
+        .dark-mode .tab-bar {
+            background: #1e1e1e;
+        }
+        .tab-item {
+            text-align: center;
+            flex: 1;
+        }
+        .tab-item img {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        .tab-item p {
+            margin: 5px 0 0;
+            font-size: 12px;
+        }
+        .toggle-container {
+            text-align: center;
+            padding: 10px;
+        }
+        .toggle-button {
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            background: #ff4b2b;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .dark-mode .toggle-button {
+            background: #f39c12;
+        }
+        /* Remove underline from links */
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body onload="updateTime()">
+
+    <div class="app-container">
+        <div class="header">
+            <p id="greeting">Good Morning</p>
+            <p class="time-display" id="currentTime"></p>
+            <div class="weather">21°C</div>
+        </div>
+
+        <div class="grid-container">
+            <!-- Links to specific game pages -->
+            <a href="game2.html" class="grid-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/1041/1041895.png" alt="Walking">
+                <p>puzzle</p>
+            </a>
+            <a href="game.html" class="grid-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/201/201572.png" alt="Cycling">
+                <p>touch me</p>
+            </a>
+            <a href="https://poki.com/" class="grid-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/743/743131.png" alt="Driving">
+                <p>Games</p>
+            </a>
+            <a href="bus.html" class="grid-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/3097/3097091.png" alt="Train">
+                <p>Online booking</p>
+            </a>
+            <a href="https://youtube.com/@vxxtha?feature=shared" class="grid-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/2769/2769193.png" alt="Hiking">
+                <p>VX XTHA</p>
+            </a>
+            <a href="https://chatgpt.com/" class="grid-item">
+                <img src="https://cdn-icons-png.flaticon.com/128/681/681610.png" alt="Flight">
+                <p>Chatgpt</p>
+            </a>
+        </div>
+
+        <div class="toggle-container">
+            <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        </div>
+    </div>
+
+    <div class="tab-bar">
+        <div class="tab-item">
+            <img src="https://cdn-icons-png.flaticon.com/128/25/25694.png" alt="Home" id="homeTab">
+            <p>Home</p>
+        </div>
+        <div class="tab-item">
+            <img src="https://cdn-icons-png.flaticon.com/128/1828/1828884.png" alt="Favorites" id="favoritesTab">
+            <p>Favorites</p>
+        </div>
+        <div class="tab-item">
+            <img src="https://cdn-icons-png.flaticon.com/128/711/711192.png" alt="More" id="moreTab">
+            <p>More</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const options = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true, weekday: 'long' };
+            document.getElementById('currentTime').innerText = now.toLocaleString('en-US', options);
+
+            // Get the current hour to determine the greeting
+            const currentHour = now.getHours();
+            const greetingElement = document.getElementById('greeting');
+
+            if (currentHour >= 5 && currentHour < 12) {
+                greetingElement.innerText = 'Good Morning';
+            } else if (currentHour >= 12 && currentHour < 17) {
+                greetingElement.innerText = 'Good Afternoon';
+            } else if (currentHour >= 17 && currentHour < 21) {
+                greetingElement.innerText = 'Good Evening';
+            } else {
+                greetingElement.innerText = 'Good Night';
+            }
+
+            setTimeout(updateTime, 1000);
+        }
+
+        // Navigation functionality
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Add event listeners to tab items
+            document.getElementById("homeTab").addEventListener("click", function () {
+                navigateTo("index.html");
+            });
+
+            document.getElementById("favoritesTab").addEventListener("click", function () {
+                navigateTo("favorite.html");
+            });
+
+            document.getElementById("moreTab").addEventListener("click", function () {
+                navigateTo("more.html");
+            });
+        });
+    </script>
+
+</body>
+</html>
